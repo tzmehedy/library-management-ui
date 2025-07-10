@@ -1,4 +1,5 @@
 import Root from "@/layouts/Root";
+import CreateBook from "@/pages/CreateBook/CreateBook";
 import Home from "@/pages/Home/Home";
 import { createBrowserRouter } from "react-router";
 
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
       {
         path:"/",
         element: <Home></Home>
+      },
+      {
+        path:"/create-book",
+        element: <CreateBook></CreateBook>
       }
     ]
   },

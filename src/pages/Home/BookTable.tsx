@@ -27,7 +27,6 @@ const BookTable = () => {
           </Link>
         </div>
         <Table>
-
           <TableHeader>
             <TableRow>
               <TableHead className="">Title</TableHead>
