@@ -1,8 +1,6 @@
-
-import Root from "@/layouts/root";
+import Root from "@/layouts/Root";
 import Home from "@/pages/Home/Home";
 import { createBrowserRouter } from "react-router";
-
 
 const router = createBrowserRouter([
   {
