@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useCreateBookMutation } from "@/redux/api/bookApis";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   title: z.string().min(1, "The title is required"),
@@ -27,8 +30,9 @@ const formSchema = z.object({
   available: z.boolean().optional(),
 });
 
-
 const CreateBook = () => {
+  const [createBook, {isLoading}] = useCreateBookMutation();
+  const navigate = useNavigate()
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
@@ -42,15 +46,21 @@ const CreateBook = () => {
       },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-      console.log(values);
+   async function onSubmit(values: z.infer<typeof formSchema>) {
+      const result = await createBook(values)
+      if (result.error) {
+        toast.error("The isbn number will be unique");
+      } else {
+        toast.success(result.data.message);
+        navigate("/")
+      }
     }  
     return (
       <div>
         <div className="text-center">
           <h1 className="text-2xl font-bold underline">Add Book</h1>
         </div>
-        <div className="flex justify-center items-center my-5">
+        <div className="flex justify-center items-center my-5"> 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid grid-cols-1  lg:grid-cols-2 gap-10">
@@ -181,7 +191,9 @@ const CreateBook = () => {
                   )}
                 />
               </div>
-              <Button type="submit">Add Book</Button>
+              <Button type="submit" disabled={isLoading} className="bg-blue-600 text-white font-bold">
+                Add Book
+              </Button>
             </form>
           </Form>
         </div>

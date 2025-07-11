@@ -29,13 +29,13 @@ const BookTable = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="">Title</TableHead>
-              <TableHead>Author</TableHead>
-              <TableHead>Genre</TableHead>
-              <TableHead className="">ISBN</TableHead>
-              <TableHead className="">Copies</TableHead>
-              <TableHead className="">Available</TableHead>
-              <TableHead className="">Action</TableHead>
+              <TableHead className="font-bold text-xl">Title</TableHead>
+              <TableHead className="font-bold text-xl">Author</TableHead>
+              <TableHead className="font-bold text-xl">Genre</TableHead>
+              <TableHead className="font-bold text-xl">ISBN</TableHead>
+              <TableHead className="font-bold text-xl">Copies</TableHead>
+              <TableHead className="font-bold text-xl">Available</TableHead>
+              <TableHead className="font-bold text-xl">Action</TableHead>
             </TableRow>
           </TableHeader>
 

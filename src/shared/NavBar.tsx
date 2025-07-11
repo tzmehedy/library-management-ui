@@ -22,7 +22,6 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-
         <div className="md:hidden">
             <Menu />
         </div>
