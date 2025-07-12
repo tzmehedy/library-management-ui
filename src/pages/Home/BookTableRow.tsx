@@ -8,6 +8,7 @@ interface IBookTableRow{
 const BookTableRow = ({ book }: IBookTableRow) => {
   return (
     <TableRow>
+    
       <TableCell className="font-medium">{book?.title}</TableCell>
       <TableCell>{book?.author}</TableCell>
       <TableCell>{book?.genre}</TableCell>

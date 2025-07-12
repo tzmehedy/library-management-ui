@@ -1,17 +1,16 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useGetAllBooksQuery } from "@/redux/api/bookApis";
 import BookTableRow from "./BookTableRow";
 import type { IBook } from "@/types/bookTypes";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router";
 
 interface IBookTableProps{
-  limit:number | null
+  data: { data: IBook[] },
+  isLoading: boolean
 }
 
-const BookTable = ({ limit }: IBookTableProps) => {
-  const { data, isLoading } = useGetAllBooksQuery({ limit });
-
+const BookTable = ({ data, isLoading}: IBookTableProps) => {
+  
   if (isLoading)
     return (
       <div className="flex items-center justify-center">
