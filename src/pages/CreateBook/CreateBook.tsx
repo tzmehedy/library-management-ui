@@ -52,7 +52,7 @@ const CreateBook = () => {
         toast.error("The isbn number will be unique");
       } else {
         toast.success(result.data.message);
-        navigate("/")
+        navigate("/books")
       }
     }  
     return (

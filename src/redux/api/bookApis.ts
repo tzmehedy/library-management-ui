@@ -17,7 +17,7 @@ export const bookApis = createApi({
       query: ({page,size }) => ({
         url: `api/books?page=${page}&&size=${size}`,
       }),
-      providesTags: ["books"],
+      providesTags: ["books"]
     }),
     createBook: build.mutation({
       query: (body) => ({
@@ -27,7 +27,15 @@ export const bookApis = createApi({
       }),
       invalidatesTags: ["books"],
     }),
+
+    deleteBook: build.mutation({
+      query: (id)=>({
+        url: `api/books/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["books"]
+    })
   }),
 });
 
-export const {useGetAllBooksByPaginationQuery, useGetAllBooksQuery, useCreateBookMutation} = bookApis
+export const {useGetAllBooksByPaginationQuery, useGetAllBooksQuery, useCreateBookMutation, useDeleteBookMutation} = bookApis
