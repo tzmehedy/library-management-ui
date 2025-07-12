@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import type { IBook } from '@/types/bookTypes';
-import { CirclePlus, SquarePen, Trash } from 'lucide-react';
+import { BookPlus, SquarePen, Trash } from 'lucide-react';
 
 interface IBookTableRow{
     book: IBook;
@@ -24,7 +24,7 @@ const BookTableRow = ({ book }: IBookTableRow) => {
           <Trash className="size-4 text-red-600"></Trash>
         </div>
         <div title='Borrow' className='cursor-pointer'>
-          <CirclePlus className="size-4 text-green-600"></CirclePlus>
+          <BookPlus className="size-4 text-green-600"></BookPlus>
         </div>
       </TableCell>
     </TableRow>

@@ -11,17 +11,20 @@ export const bookApis = createApi({
   tagTypes: ["books"],
   endpoints: (build) => ({
     getAllBooks: build.query({
-      query: () => "api/books",
-      providesTags:["books"]
+      query: ({ limit }) => ({
+        url: "api/books",
+        params: {limit}
+      }),
+      providesTags: ["books"],
     }),
     createBook: build.mutation({
-      query: (body)=>({
+      query: (body) => ({
         url: "api/books",
         method: "POST",
-        body
+        body,
       }),
-      invalidatesTags: ["books"]
-    })
+      invalidatesTags: ["books"],
+    }),
   }),
 });
 

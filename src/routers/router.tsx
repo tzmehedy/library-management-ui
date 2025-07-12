@@ -1,4 +1,5 @@
 import Root from "@/layouts/Root";
+import AllBooks from "@/pages/AllBooks/AllBooks";
 import CreateBook from "@/pages/CreateBook/CreateBook";
 import Home from "@/pages/Home/Home";
 import { createBrowserRouter } from "react-router";
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <Home></Home>
+        element: <AllBooks></AllBooks>
+
       },
       {
         path:"/create-book",
