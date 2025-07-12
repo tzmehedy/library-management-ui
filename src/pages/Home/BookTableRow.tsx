@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import type { IBook } from '@/types/bookTypes';
-import { BookPlus, LoaderCircle, SquarePen } from 'lucide-react';
+import { BookPlus, Info, LoaderCircle, SquarePen } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,6 +15,7 @@ import {
 import { Trash } from "lucide-react";
 import { useDeleteBookMutation } from '@/redux/api/bookApis';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router';
 
 interface IBookTableRow{
     book: IBook;
@@ -76,6 +77,11 @@ const BookTableRow = ({ book }: IBookTableRow) => {
         </div>
         <div title="Borrow" className="cursor-pointer">
           <BookPlus className="size-4 text-green-600"></BookPlus>
+        </div>
+        <div title="More Abut">
+          <Link to={`/books/${book?._id}`}>
+            <Info className="size-4 text-orange-600"></Info>
+          </Link>
         </div>
       </TableCell>
     </TableRow>

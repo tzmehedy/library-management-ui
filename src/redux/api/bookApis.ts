@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
 export const bookApis = createApi({
   reducerPath: "bookApis",
   baseQuery: fetchBaseQuery({
@@ -10,14 +9,17 @@ export const bookApis = createApi({
   tagTypes: ["books"],
   endpoints: (build) => ({
     getAllBooks: build.query({
-      query: ({limit})=> `api/books?limit=${limit}`,
+      query: ({ limit }) => `api/books?limit=${limit}`,
       providesTags: ["books"],
     }),
     getAllBooksByPagination: build.query({
-      query: ({page,size }) => ({
+      query: ({ page, size }) => ({
         url: `api/books?page=${page}&&size=${size}`,
       }),
-      providesTags: ["books"]
+      providesTags: ["books"],
+    }),
+    getBookById: build.query({
+      query: (id) => `api/books/${id}`,
     }),
     createBook: build.mutation({
       query: (body) => ({
@@ -29,13 +31,19 @@ export const bookApis = createApi({
     }),
 
     deleteBook: build.mutation({
-      query: (id)=>({
+      query: (id) => ({
         url: `api/books/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["books"]
-    })
+      invalidatesTags: ["books"],
+    }),
   }),
 });
 
-export const {useGetAllBooksByPaginationQuery, useGetAllBooksQuery, useCreateBookMutation, useDeleteBookMutation} = bookApis
+export const {
+  useGetAllBooksByPaginationQuery,
+  useGetAllBooksQuery,
+  useGetBookByIdQuery,
+  useCreateBookMutation,
+  useDeleteBookMutation,
+} = bookApis;

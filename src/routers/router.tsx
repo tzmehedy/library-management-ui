@@ -2,6 +2,7 @@ import Root from "@/layouts/Root";
 import AllBooks from "@/pages/AllBooks/AllBooks";
 import CreateBook from "@/pages/CreateBook/CreateBook";
 import Home from "@/pages/Home/Home";
+import SingleBook from "@/pages/SingleBook/SingleBook";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
         path: "/books",
         element: <AllBooks></AllBooks>
 
+      },
+      {
+        path: "/books/:id",
+        element: <SingleBook></SingleBook>
       },
       {
         path:"/create-book",
