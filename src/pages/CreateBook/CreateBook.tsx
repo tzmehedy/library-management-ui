@@ -41,7 +41,7 @@ const CreateBook = () => {
         genre: "",
         isbn: "",
         description: "",
-        copies: "",
+        copies: 0,
         available:true
       },
     });

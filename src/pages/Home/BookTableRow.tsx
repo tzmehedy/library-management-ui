@@ -71,9 +71,11 @@ const BookTableRow = ({ book }: IBookTableRow) => {
           </AlertDialog>
         </div>
         <div title="Borrow" className="cursor-pointer">
-          <BookPlus className="size-4 text-green-600"></BookPlus>
+          <Link to={`/borrow/${book?._id}`}>
+            <BookPlus className="size-4 text-green-600"></BookPlus>
+          </Link>
         </div>
-        <div title="More Abut">
+        <div title="More About">
           <Link to={`/books/${book?._id}`}>
             <Info className="size-4 text-orange-600"></Info>
           </Link>
