@@ -1,6 +1,7 @@
 import Root from "@/layouts/Root";
 import AllBooks from "@/pages/AllBooks/AllBooks";
 import BorrowBook from "@/pages/BorrowBook/BorrowBook";
+import BorrowBookSummary from "@/pages/BorrowBookSummary/BorrowBookSummary";
 import CreateBook from "@/pages/CreateBook/CreateBook";
 import Home from "@/pages/Home/Home";
 import SingleBook from "@/pages/SingleBook/SingleBook";
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         element: <BorrowBook></BorrowBook>
 
       },
+
+      {
+        path: "/borrow-summary",
+        element: <BorrowBookSummary></BorrowBookSummary>
+      }
     ],
   },
 ]);

@@ -54,7 +54,7 @@ const BorrowBook = () => {
     const result = await createBorrow(borrowInfo);
     if(result?.data?.success === true){
         toast.success(result?.data?.message)
-        navigate("/books")
+        navigate("/borrow-summary")
     }
     else{
         toast.error("The number of book copies is not available at this moment");
