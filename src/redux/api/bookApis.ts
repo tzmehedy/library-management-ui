@@ -21,8 +21,7 @@ export const bookApis = createApi({
 
     getBookById: build.query({
       query: (id) => `api/books/${id}`,
-      providesTags:["books"]
-
+      providesTags: ["books"],
     }),
     createBook: build.mutation({
       query: (body) => ({
@@ -42,13 +41,22 @@ export const bookApis = createApi({
     }),
 
     updateBook: build.mutation({
-      query: ({body, id}) => ({
+      query: ({ body, id }) => ({
         url: `/api/books/${id}`,
         method: "PUT",
-        body
+        body,
       }),
-      invalidatesTags: ["books"]
-    })
+      invalidatesTags: ["books"],
+    }),
+
+    createBorrow: build.mutation({
+      query: (body) => ({
+        url: "/api/borrow",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["books"],
+    }),
   }),
 });
 
@@ -59,4 +67,6 @@ export const {
   useCreateBookMutation,
   useDeleteBookMutation,
   useUpdateBookMutation,
+  useCreateBorrowMutation
 } = bookApis;
+

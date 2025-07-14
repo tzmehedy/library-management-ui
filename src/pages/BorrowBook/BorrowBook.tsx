@@ -9,25 +9,35 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useCreateBorrowMutation } from "@/redux/api/bookApis";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, LoaderCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { toast } from "react-toastify";
 import z from "zod";
 
 const formSchema = z.object({
   quantity: z.coerce
     .number()
     .gt(0, "The number of book copies must be greater than 0"),
-  dueDate: z.date()
+  dueDate: z.date(),
 });
 
 const BorrowBook = () => {
   const params = useParams();
   const id = params.bookId;
+  const navigate = useNavigate()
+
+  const [createBorrow, { isLoading }] = useCreateBorrowMutation();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -36,14 +46,29 @@ const BorrowBook = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const borrowInfo = {
-        ...values,
-        book: id,
+      ...values,
+      book: id,
+    };
+    const result = await createBorrow(borrowInfo);
+    if(result?.data?.success === true){
+        toast.success(result?.data?.message)
+        navigate("/books")
+    }
+    else{
+        toast.error("The number of book copies is not available at this moment");
     }
 
-    console.log(borrowInfo)
+
   }
+
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center">
+        <LoaderCircle className="text-blue-600 font-bold"></LoaderCircle>
+      </div>
+    );
 
   return (
     <div>
