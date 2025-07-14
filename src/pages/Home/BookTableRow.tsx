@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import type { IBook } from '@/types/bookTypes';
-import { BookPlus, Info, LoaderCircle, SquarePen } from 'lucide-react';
+import { BookPlus, Info, SquarePen } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,7 +21,7 @@ interface IBookTableRow{
     book: IBook;
 }
 const BookTableRow = ({ book }: IBookTableRow) => {
-  const [deleteBook, {isLoading}] = useDeleteBookMutation()
+  const [deleteBook] = useDeleteBookMutation()
 
   const handelDelete = async(id:string) =>{
     const result = await deleteBook(id)
@@ -29,13 +29,6 @@ const BookTableRow = ({ book }: IBookTableRow) => {
       toast.success("The book is successfully deleted")
     }
   }
-
-  if (isLoading)
-    return (
-      <div className="flex items-center justify-center">
-        <LoaderCircle className="text-blue-600 font-bold"></LoaderCircle>
-      </div>
-    )
   return (
     <TableRow>
       <TableCell className="font-medium">{book?.title}</TableCell>
@@ -48,7 +41,9 @@ const BookTableRow = ({ book }: IBookTableRow) => {
       </TableCell>
       <TableCell className="flex items-center justify-center space-x-2">
         <div title="Edit" className="cursor-pointer">
-          <SquarePen className="size-4 text-yellow-500"></SquarePen>
+          <Link to={`/edit-book/${book?._id}`}>
+            <SquarePen className="size-4 text-yellow-500"></SquarePen>
+          </Link>
         </div>
         <div title="Delete">
           <AlertDialog>
