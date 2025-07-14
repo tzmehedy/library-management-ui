@@ -1,6 +1,6 @@
 import { useGetBookByIdQuery, useUpdateBookMutation } from "@/redux/api/bookApis";
 import { LoaderCircle } from "lucide-react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -19,9 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-// import { useCreateBookMutation } from "@/redux/api/bookApis";
-// import { toast } from "react-toastify";
-// import { useNavigate } from "react-router";
+
 
 const formSchema = z.object({
   title: z.string().min(1, "The title is required"),
@@ -38,6 +36,7 @@ const formSchema = z.object({
 const UpdateBook = () => {
   const params = useParams();
   const id = params.id;
+  const navigate = useNavigate()
 
   const { data, isLoading } = useGetBookByIdQuery(id);
   const [updateBook] = useUpdateBookMutation()
@@ -71,12 +70,12 @@ const UpdateBook = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
   
-    const result = await updateBook({body:values, id:data?.data?._id})
+    const result = await updateBook({body:values, id})
 
     if(result?.data?.success === true){
         toast.success(result?.data?.message)
+        navigate(`/books/${id}`)
     }
-    
   }
   if (isLoading)
     return (

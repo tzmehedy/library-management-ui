@@ -18,8 +18,11 @@ export const bookApis = createApi({
       }),
       providesTags: ["books"],
     }),
+
     getBookById: build.query({
       query: (id) => `api/books/${id}`,
+      providesTags:["books"]
+
     }),
     createBook: build.mutation({
       query: (body) => ({
