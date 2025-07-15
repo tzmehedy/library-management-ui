@@ -33,7 +33,7 @@ const BorrowBookSummary = () => {
       </div>
 
       <div className="flex justify-center items-center my-20">
-        <div className="w-[30%]">
+        <div className="w-[70%] md:w-[30%]">
           <Table className="">
             <TableHeader>
               <TableRow className="">
